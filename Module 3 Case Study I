@@ -1,0 +1,233 @@
+import time
+import math
+import click
+
+origin = [0,0]
+print("Up Key 5 steps up ")
+print("Up down 3 steps down")
+print("Up right  2 steps right")
+print("Up left 3 steps left ")
+
+while 1:
+    print("Play")
+    print("Press any key except arrow keys to exit")
+    c = click.getchar()
+    click.echo()
+    if c == '\xe0K':#left arrow
+        origin[0] = origin[0] - 3
+    elif c == '\xe0M':#Right arrow
+        origin[0] = origin[0] + 2
+    elif c == '\xe0H': #Up arrow
+        origin[0] = origin[1] + 5
+    elif c == '\xe0P': #down arrow
+        origin[0] = origin[0] - 3
+    else:
+        break
+
+distance = math.sqrt(math.fabs(int(origin[0])) + math.fabs(int(origin[1])))
+print("Distance from origin to current position = ", distance)
+
+
+
+lst = ['owais','ahamd','xyz']
+search = 'xyz'
+if search in lst:
+    print("xyz is in list")
+else:
+    print("xyz is not in list")
+
+
+timecal = list(time.gmtime())
+if timecal[4] > 18 or timecal < 6:
+    print("Night time")
+else:
+    print("time")
+
+
+
+
+
+def distance(x1,y1,x2,y2):
+    R = 6371
+    dlat = float(math.radians((float(x1) - float(x2))))
+    dlog = float(math.radians((float(y1) - float(y2))))
+    x1 = float(math.radians(float(x1)))
+    x2 = float(math.radians(float(x2)))
+    a  = float(math.sin(dlat/2)*math.sin(dlat/2) + math.cos(x1) * math.cos(x2) * math.sin(dlog/2)*math.sin(dlog/2))
+    c = float(2 * math.atan2(math.sqrt(a),math.sqrt(1-a)))
+    d = (R**3 * c)
+    return d
+
+x1 = input("Enter the ist latitude")
+y1 = input("Enter the ist longitude")
+x2 = input("Enter the 2nd latitude")
+y2 = input("Enter the ist longitude")
+caldistance = distance(x1,x2,y1,y2)
+print("Distance is ", caldistance)
+
+
+
+
+balance = 15263
+password = "owais"
+def check_balance():
+    print("Your balance = ", balance)
+
+def withdraw():
+    amount = int(input("Enter the amount you want to withdraw "))
+    if balance < amount:
+        print("Insufficient Balance")
+        return 0
+    else:
+        print("Amount sucessfully withdrawn")
+        return amount
+
+def change_password():
+    c_password = input("Enther the current Password ")
+    if c_password == password:
+        n_password = input("Enter the new password ")
+        print("Password Changed Sucessfully")
+        return n_password
+    else:
+        print("Wrong password")
+        return password
+
+
+choice = 1
+while choice:
+    print("1: Balance Enquirey")
+    print("2: Withdrawal")
+    print("3: Change Password")
+    print("other to exit")
+    choice = int(input("Enter your choice "))
+    if choice ==1:
+        check_balance()
+    elif choice == 2:
+        balance = balance - withdraw()
+    elif choice == 3:
+        password = change_password()
+    else:
+        break
+    
+#****************
+lst = []
+for x in range(2000,3201):
+    if x%7 == 0 and x%5 != 0:
+        lst.append(x)
+print(lst)
+
+
+
+def factorial(number):
+    if number == 1:
+        return 1
+    else:
+        return number * factorial(number -1)
+
+number = int(input("Enter the number"))
+fact = factorial(number)
+print("Factorial of the number is = ",fact)
+
+
+
+
+def squareroot(D):
+    C = 50
+    H = 30
+    lis = D.split(",")
+    for i in range(0,len(lis)):
+        lis[i] = 2 * C *int(lis[i])/H
+    return lis
+D = input("Entre the input like 100,200,300    ")
+relist = squareroot(D)
+print("The result is = ",relist)
+
+
+
+
+size = input("Enter the siz of matrix like 3,5 ")
+rc = size.split(",")
+print(rc)
+arr = []
+
+for i in range(0,int(rc[0])):
+    arr.append([])
+    for j in range(0,int(rc[1])):
+        arr[i].append(i*j)
+
+print(arr)
+
+
+
+
+sequence = input("Enter the comma seperated sequence ")
+lst = sequence.split(',')
+lst = sorted(lst)
+sorted_sequence = ','.join(lst)
+print("Sorted sequence = ", sorted_sequence)
+
+
+lines = []
+i = 0
+while 1:
+    lines.append(input("Enter the line "))
+    f = input("want to enter another line press y ")
+    if f != 'y': 
+        break
+for i in range(0,len(lines)):
+    lines[i] = lines[i].upper()
+print(lines)
+
+
+
+
+sequence = input("Enter the white spaced words ")
+lst = sequence.split(' ')
+lst = set(lst)
+lst = sorted(lst)
+sorted_sequence = ' '.join(list(lst))
+print("Sorted sequence with removed duplicate words = ", sorted_sequence)
+
+
+
+binary_sequence = input("Enter the binary numbers seperated by ,")
+valid_sequence = 0
+sequence = "10,"
+for x in binary_sequence:
+    if x not in sequence:
+        print("Invalid Sequence")
+        break
+    else:
+        valid_sequence = 1
+lst = binary_sequence.split(',')
+divisible_list = []
+if valid_sequence == 1:
+    for i in range(0, len(lst)):
+        lst[i] = int(lst[i],2)
+        if lst[i] % 5 == 0:
+            divisible_list.append(lst[i])
+    for i in range(0, len(divisible_list)):
+        divisible_list[i] = bin(divisible_list[i])
+    print("The binary numbers divisible by 5 are ", divisible_list)
+
+
+
+upper = 0
+lower = 0
+sequence = input("Enter the sequence ")
+for x in sequence:
+    if x.islower():
+        lower = lower + 1
+    elif x.isupper():
+        upper = upper + 1
+print("Lower caser letters ", lower)
+print("Upper case Letter ",upper)
+
+
+
+lista = [1,2,3,4]
+print(sum(lista), math.fsum(lista))# the only difference fsum() keeps track of the accuracy
+
+
+
+
